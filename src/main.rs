@@ -81,8 +81,10 @@ impl Fog {
         // set low for the relay means on
         if self.pin.is_set_low() && elapsed > FOG_ON_INTERVAL {
             self.pin.set_high();
+            self.last_switch = Instant::now();
         } else if self.pin.is_set_high() && elapsed > FOG_OFF_INTERVAL {
             self.pin.set_low();
+            self.last_switch = Instant::now();
         }
     }
 }
