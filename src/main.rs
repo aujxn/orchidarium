@@ -32,9 +32,10 @@ impl Lights {
     fn update(&mut self) {
         let now = OffsetDateTime::now_local().time();
         if now > LIGHTS_ON_TIME && now < LIGHTS_OFF_TIME {
-            self.pin.set_high();
-        } else {
+            // set low for the relay means on
             self.pin.set_low();
+        } else {
+            self.pin.set_high();
         }
     }
 }
